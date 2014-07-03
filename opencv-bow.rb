@@ -1,6 +1,6 @@
 require 'formula'
 
-class Opencv < Formula
+class OpencvBow < Formula
   homepage 'http://opencv.org/'
   url 'https://github.com/Itseez/opencv/archive/2.4.9.tar.gz'
   sha1 'd16ced627db17f9864c681545f18f030c7a4cc0b'
@@ -35,6 +35,9 @@ class Opencv < Formula
   # you don't need unless you're doing video analysis, and some of it isn't
   # in Homebrew anyway. Will depend on openexr if it's installed.
   depends_on 'ffmpeg' => :optional
+
+  conflicts_with 'opencv',
+    :because => "this formula is a patched version of opencv"
 
   patch :DATA
 
