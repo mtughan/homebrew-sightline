@@ -1,6 +1,6 @@
 require 'formula'
 
-class Tesseract < Formula
+class TesseractRc < Formula
   homepage 'http://code.google.com/p/tesseract-ocr/'
   url 'https://bitbucket.org/3togo/python-tesseract/downloads/tesseract-3.03-rc1.tar.gz'
   sha1 '5bd12482a69f0a1fdf3c9e0d652de08db763ee93'
@@ -18,6 +18,9 @@ class Tesseract < Formula
 
   depends_on 'libtiff'
   depends_on 'leptonica'
+
+  conflicts_with 'tesseract',
+    :because => "this formula is a patched version of tesseract"
 
   fails_with :llvm do
     build 2206
