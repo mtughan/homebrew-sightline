@@ -44,6 +44,7 @@ class OpencvBow < Formula
   def install
     jpeg = Formula["jpeg"]
     py_prefix = %x(python-config --prefix).chomp
+    py_version = %x(python -c "import sys; print(sys.version)")[0..2]
 
     ENV.cxx11 if build.cxx11?
     args = std_cmake_args + %W(
@@ -56,8 +57,8 @@ class OpencvBow < Formula
       -DBUILD_JPEG=OFF
       -DJPEG_INCLUDE_DIR=#{jpeg.opt_include}
       -DJPEG_LIBRARY=#{jpeg.opt_lib}/libjpeg.dylib
-      -DPYTHON_LIBRARY=#{py_prefix}/Python
-      -DPYTHON_INCLUDE_DIR=#{py_prefix}/Headers
+      -DPYTHON_LIBRARY=#{py_prefix}/lib/libpython#{py_version}.dylib
+      -DPYTHON_INCLUDE_DIR=#{py_prefix}/include/python#{py_version}
     )
 
     if build.without? "tests"
