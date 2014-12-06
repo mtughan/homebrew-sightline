@@ -14,6 +14,7 @@ class OpencvBow < Formula
   option "without-opencl", "Disable GPU code in OpenCV using OpenCL"
   option "with-cuda", "Build with CUDA support"
   option "with-quicktime", "Use QuickTime for Video I/O insted of QTKit"
+  option "with-opengl", "Build with OpenGL support"
 
   option :cxx11
 
@@ -75,6 +76,7 @@ class OpencvBow < Formula
     args << "-DWITH_GSTREAMER=" + ((build.with? "gstreamer") ? "ON" : "OFF")
     args << "-DWITH_QUICKTIME=" + ((build.with? "quicktime") ? "ON" : "OFF")
     args << "-DWITH_1394=" + ((build.with? "libdc1394") ? "ON" : "OFF")
+    args << "-DWITH_OPENGL=" + ((build.with? "opengl") ? "ON" : "OFF")
 
     if build.with? "cuda"
       ENV["CUDA_NVCC_FLAGS"] = "-Xcompiler -stdlib=libstdc++; -Xlinker -stdlib=libstdc++"
